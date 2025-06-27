@@ -1,0 +1,1 @@
+Simple Website I made to showcase my mom's artworks
