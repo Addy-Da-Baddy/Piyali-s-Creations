@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { Phone, Instagram, Mail, Send, Facebook } from "lucide-react";
+import { FaPhoneAlt, FaInstagram, FaEnvelope, FaFacebookF, FaHeart, FaRegThumbsUp, FaRegEnvelope } from 'react-icons/fa';
 
 // Sparkling animation component
 const SparkleEffect = ({ delay = 0 }: { delay?: number }) => {
@@ -57,12 +57,36 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-orange-50 to-red-50 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20 w-5 h-5 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full animate-bounce opacity-30" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
-        <div className="absolute top-40 right-32 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-pulse opacity-40" style={{ animationDelay: '1s', animationDuration: '2.5s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping opacity-30" style={{ animationDelay: '2s', animationDuration: '3.5s' }}></div>
-        <div className="absolute bottom-20 right-20 w-6 h-6 bg-gradient-to-r from-green-400 to-teal-400 rounded-full animate-bounce opacity-25" style={{ animationDelay: '0.5s', animationDuration: '4s' }}></div>
+      {/* Mandala background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <svg
+          width="500"
+          height="500"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="blur-lg opacity-10 animate-spin-slow"
+          style={{ filter: 'drop-shadow(0 0 32px #FFD70088)' }}
+        >
+          <circle cx="24" cy="24" r="20" stroke="#FFD700" strokeWidth="2.5" fill="#FFF8E1" fillOpacity="0.2" />
+          <circle cx="24" cy="24" r="14" stroke="#FFC107" strokeWidth="1.5" fill="none" />
+          <g opacity="0.2">
+            {[...Array(12)].map((_, i) => (
+              <ellipse
+                key={i}
+                cx="24"
+                cy="10"
+                rx="2.5"
+                ry="6"
+                fill="#FFD700"
+                stroke="#FFC107"
+                strokeWidth="0.5"
+                transform={`rotate(${i * 30} 24 24)`}
+              />
+            ))}
+          </g>
+          <circle cx="24" cy="24" r="4" fill="#FFD700" fillOpacity="0.3" />
+        </svg>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -96,7 +120,7 @@ const Contact = () => {
                   <p className="text-gray-600">+91 8697176312</p>
                 </div>
                 <div className="absolute top-2 right-2 text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-bounce text-sm">
-                  📞
+                  <FaPhoneAlt />
                 </div>
               </a>
             </div>
@@ -119,7 +143,7 @@ const Contact = () => {
                   <p className="text-gray-600">@dpiyali</p>
                 </div>
                 <div className="absolute top-2 right-2 text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-bounce text-sm">
-                  💕
+                  <FaHeart />
                 </div>
               </a>
             </div>
@@ -140,7 +164,7 @@ const Contact = () => {
                   <p className="text-gray-600">das2010piyali@gmail.com</p>
                 </div>
                 <div className="absolute top-2 right-2 text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-bounce text-sm">
-                  ✉️
+                  <FaEnvelope />
                 </div>
               </a>
             </div>
@@ -163,7 +187,7 @@ const Contact = () => {
                   <p className="text-gray-600">Piyali Das</p>
                 </div>
                 <div className="absolute top-2 right-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-bounce text-sm">
-                  👍
+                  <FaRegThumbsUp />
                 </div>
               </a>
             </div>

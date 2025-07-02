@@ -47,17 +47,47 @@ const MouseTrail = ({ enabled = true }: MouseTrailProps) => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
-      {/* Main cursor */}
+      {/* Main cursor: Golden Mandala SVG */}
       <div
-        className={`absolute w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-200 ${
-          isClicking ? 'scale-150 opacity-80' : 'scale-100 opacity-60'
-        }`}
+        className="absolute pointer-events-none z-50"
         style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          transform: `translate3d(0, 0, 0) scale(${isClicking ? 1.5 : 1})`,
+          left: mousePosition.x - 24,
+          top: mousePosition.y - 24,
+          width: 48,
+          height: 48,
+          transform: `translate3d(0, 0, 0) scale(${isClicking ? 1.2 : 1})`,
+          transition: 'transform 0.2s cubic-bezier(0.4,0,0.2,1)',
         }}
-      />
+      >
+        <svg
+          width="48"
+          height="48"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mandala-cursor animate-spin-slow"
+          style={{ filter: isClicking ? 'drop-shadow(0 0 16px gold)' : 'drop-shadow(0 0 8px gold)' }}
+        >
+          <circle cx="24" cy="24" r="20" stroke="#FFD700" strokeWidth="2.5" fill="#FFF8E1" fillOpacity="0.7" />
+          <circle cx="24" cy="24" r="14" stroke="#FFC107" strokeWidth="1.5" fill="none" />
+          <g opacity="0.7">
+            {[...Array(12)].map((_, i) => (
+              <ellipse
+                key={i}
+                cx="24"
+                cy="10"
+                rx="2.5"
+                ry="6"
+                fill="#FFD700"
+                stroke="#FFC107"
+                strokeWidth="0.5"
+                transform={`rotate(${i * 30} 24 24)`}
+              />
+            ))}
+          </g>
+          <circle cx="24" cy="24" r="4" fill="#FFD700" fillOpacity="0.9" />
+        </svg>
+      </div>
       
       {/* Inner cursor */}
       <div

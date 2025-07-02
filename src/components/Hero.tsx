@@ -1,5 +1,6 @@
-
 import { useEffect, useState } from "react";
+import { RiFireFill, RiStarSFill } from 'react-icons/ri';
+import { FaRegStar, FaPalette, FaOm } from 'react-icons/fa';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +41,37 @@ const Hero = () => {
       id="home" 
       className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden pt-16 cursor-none"
     >
+      {/* Mandala background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <svg
+          width="700"
+          height="700"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="blur-lg opacity-20 animate-spin-slow"
+          style={{ filter: 'drop-shadow(0 0 64px #FFD70088)' }}
+        >
+          <circle cx="24" cy="24" r="20" stroke="#FFD700" strokeWidth="2.5" fill="#FFF8E1" fillOpacity="0.5" />
+          <circle cx="24" cy="24" r="14" stroke="#FFC107" strokeWidth="1.5" fill="none" />
+          <g opacity="0.5">
+            {[...Array(12)].map((_, i) => (
+              <ellipse
+                key={i}
+                cx="24"
+                cy="10"
+                rx="2.5"
+                ry="6"
+                fill="#FFD700"
+                stroke="#FFC107"
+                strokeWidth="0.5"
+                transform={`rotate(${i * 30} 24 24)`}
+              />
+            ))}
+          </g>
+          <circle cx="24" cy="24" r="4" fill="#FFD700" fillOpacity="0.7" />
+        </svg>
+      </div>
       {/* Golden Indian mouse follower effect with enhanced animations */}
       <div 
         className={`absolute w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full pointer-events-none z-50 transition-all duration-300 ${
@@ -102,16 +134,16 @@ const Hero = () => {
         ))}
         {/* Indian spiritual symbols */}
         <div className="absolute top-1/4 left-1/4 text-3xl text-amber-400 om-pulse opacity-20">
-          <i className="fas fa-om"></i>
+          <FaOm />
         </div>
         <div className="absolute bottom-1/3 right-1/4 text-2xl text-orange-400 ethereal-float opacity-25">
-          <i className="fas fa-fire"></i>
+          <RiFireFill />
         </div>
         <div className="absolute top-1/2 right-1/3 text-xl text-yellow-500 particle-swirl opacity-20">
-          <i className="far fa-star"></i>
+          <FaRegStar />
         </div>
         <div className="absolute bottom-1/4 left-1/3 text-lg text-amber-500 aureole-effect opacity-15">
-          <i className="fas fa-sparkles"></i>
+          <RiStarSFill />
         </div>
       </div>
       
@@ -120,7 +152,7 @@ const Hero = () => {
           <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent leading-tight relative divine-glow">
             Piyali's Creations
             <div className="absolute -top-4 -right-4 text-amber-400 om-pulse text-3xl">
-              <i className="fas fa-om"></i>
+              <FaOm />
             </div>
           </h1>
           

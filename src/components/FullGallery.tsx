@@ -1,6 +1,7 @@
-
 import { ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
+import { RiFireFill, RiStarSFill } from 'react-icons/ri';
+import { FaRegStar, FaPalette, FaOm } from 'react-icons/fa';
 
 // Enhanced sparkling animation component with ethereal effects
 const SparkleEffect = ({ delay = 0 }: { delay?: number }) => {
@@ -140,6 +141,37 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
 
   return (
     <div className="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden cursor-none" style={{ userSelect: isDragging ? 'none' : 'auto' }}>
+      {/* Mandala background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <svg
+          width="600"
+          height="600"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="blur-lg opacity-10 animate-spin-slow"
+          style={{ filter: 'drop-shadow(0 0 48px #FFD70088)' }}
+        >
+          <circle cx="24" cy="24" r="20" stroke="#FFD700" strokeWidth="2.5" fill="#FFF8E1" fillOpacity="0.3" />
+          <circle cx="24" cy="24" r="14" stroke="#FFC107" strokeWidth="1.5" fill="none" />
+          <g opacity="0.3">
+            {[...Array(12)].map((_, i) => (
+              <ellipse
+                key={i}
+                cx="24"
+                cy="10"
+                rx="2.5"
+                ry="6"
+                fill="#FFD700"
+                stroke="#FFC107"
+                strokeWidth="0.5"
+                transform={`rotate(${i * 30} 24 24)`}
+              />
+            ))}
+          </g>
+          <circle cx="24" cy="24" r="4" fill="#FFD700" fillOpacity="0.4" />
+        </svg>
+      </div>
       {/* Custom mouse cursor - Golden Indian theme */}
       <div 
         className={`fixed w-6 h-6 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full pointer-events-none z-50 transition-all duration-200 ${isDragging ? 'scale-150' : 'scale-100'}`}
@@ -206,16 +238,16 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
         
         {/* Floating sacred icons */}
         <div className="absolute top-1/4 left-1/6 text-2xl text-amber-400 om-pulse opacity-20">
-          <i className="fas fa-om"></i>
+          <FaOm />
         </div>
         <div className="absolute bottom-1/3 right-1/5 text-xl text-orange-400 ethereal-float opacity-25">
-          <i className="fas fa-fire"></i>
+          <RiFireFill />
         </div>
         <div className="absolute top-3/4 left-1/2 text-lg text-yellow-500 particle-swirl opacity-15">
-          <i className="far fa-star"></i>
+          <FaRegStar />
         </div>
         <div className="absolute top-1/3 right-1/3 text-base text-amber-300 aureole-effect opacity-20">
-          <i className="fas fa-sparkles"></i>
+          <RiStarSFill />
         </div>
       </div>
       
@@ -236,7 +268,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent relative">
             Piyali's Complete Collection
             <div className="absolute -top-3 -right-3 text-amber-400 animate-spin text-2xl">
-              <i className="fas fa-om"></i>
+              <FaOm />
             </div>
           </h1>
           <p className="text-xl text-amber-800 max-w-2xl mx-auto">
@@ -260,7 +292,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white">
+              <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white group/card hover:border-amber-400 border-2 border-amber-200 group-hover:border-amber-400 golden-shimmer">
                 {/* Sparkling effect on hover */}
                 {hoveredIndex === index && <SparkleEffect delay={0} />}
                 
@@ -295,7 +327,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
                   
                   {/* Indian spiritual elements */}
                   <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        {['fas fa-om', 'fas fa-fire', 'fas fa-star', 'fas fa-sparkles'].map((iconClass, idx) => (
+                        {[FaOm, RiFireFill, FaRegStar, RiStarSFill].map((Icon, idx) => (
                           <div
                             key={idx}
                             className={`absolute text-2xl animate-bounce text-amber-300`}
@@ -307,7 +339,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
                               filter: 'drop-shadow(0 0 4px rgba(251, 191, 36, 0.8))'
                             }}
                           >
-                            <i className={iconClass}></i>
+                            <Icon />
                           </div>
                         ))}
                       </div>
@@ -318,7 +350,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
                       <h3 className="text-amber-100 text-xl font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
                         {artwork.title}
                         <span className="ml-2 inline-block animate-pulse">
-                          <i className="fas fa-palette"></i>
+                          <FaPalette />
                         </span>
                       </h3>
                     </div>
@@ -334,7 +366,7 @@ const FullGallery = ({ onBackToHome }: FullGalleryProps) => {
                       filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.8))'
                     }}
                   >
-                    <i className="fas fa-om"></i>
+                    <FaOm />
                   </div>
                 </div>
               </div>

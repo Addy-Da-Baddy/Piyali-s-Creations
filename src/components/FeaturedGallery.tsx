@@ -1,5 +1,6 @@
-
 import { useState, useEffect } from "react";
+import { RiFireFill, RiStarSFill } from 'react-icons/ri';
+import { FaRegStar, FaPalette, FaOm } from 'react-icons/fa';
 
 // Sparkling animation component
 const SparkleEffect = ({ delay = 0 }: { delay?: number }) => {
@@ -80,6 +81,38 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
 
   return (
     <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Mandala background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <svg
+          width="600"
+          height="600"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="blur-lg opacity-15 animate-spin-slow"
+          style={{ filter: 'drop-shadow(0 0 48px #FFD70088)' }}
+        >
+          <circle cx="24" cy="24" r="20" stroke="#FFD700" strokeWidth="2.5" fill="#FFF8E1" fillOpacity="0.4" />
+          <circle cx="24" cy="24" r="14" stroke="#FFC107" strokeWidth="1.5" fill="none" />
+          <g opacity="0.4">
+            {[...Array(12)].map((_, i) => (
+              <ellipse
+                key={i}
+                cx="24"
+                cy="10"
+                rx="2.5"
+                ry="6"
+                fill="#FFD700"
+                stroke="#FFC107"
+                strokeWidth="0.5"
+                transform={`rotate(${i * 30} 24 24)`}
+              />
+            ))}
+          </g>
+          <circle cx="24" cy="24" r="4" fill="#FFD700" fillOpacity="0.5" />
+        </svg>
+      </div>
+      
       {/* Golden Indian floating background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-4 h-4 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full animate-bounce opacity-30" style={{ animationDelay: '0s', animationDuration: '3s', filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))' }}></div>
@@ -88,13 +121,13 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
         <div className="absolute bottom-40 right-1/3 w-5 h-5 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full animate-bounce opacity-35" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}></div>
         {/* Indian motif elements */}
         <div className="absolute top-1/4 left-1/4 text-2xl text-amber-400 om-pulse opacity-20">
-          <i className="fas fa-om"></i>
+          <FaOm />
         </div>
         <div className="absolute bottom-1/3 right-1/4 text-xl text-orange-400 ethereal-float opacity-25">
-          <i className="fas fa-fire"></i>
+          <RiFireFill />
         </div>
         <div className="absolute top-1/2 left-1/2 text-lg text-yellow-500 particle-swirl opacity-15">
-          <i className="fas fa-star"></i>
+          <FaRegStar />
         </div>
       </div>
       
@@ -103,7 +136,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
         <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent relative">
           Piyali's Featured Artwork
           <div className="absolute -top-3 -right-3 text-amber-400 animate-spin text-2xl om-pulse">
-            <i className="fas fa-om"></i>
+            <FaOm />
           </div>
         </h2>
         <p className="text-xl text-amber-800 max-w-2xl mx-auto">
@@ -122,7 +155,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white transform hover:scale-105">
+            <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white transform hover:scale-105 group/card hover:border-amber-400 border-2 border-amber-200 group-hover:border-amber-400 golden-shimmer">
               {/* Sparkling effect on hover */}
               {hoveredIndex === index && <SparkleEffect delay={0} />}
               
@@ -145,7 +178,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
                 
                 {/* Indian spiritual elements animation */}
                 <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  {['fas fa-om', 'fas fa-fire', 'far fa-star', 'fas fa-sparkles'].map((iconClass, i) => (
+                  {[FaOm, RiFireFill, FaRegStar, RiStarSFill].map((Icon, i) => (
                     <div
                       key={i}
                       className="absolute text-2xl animate-bounce text-amber-300"
@@ -157,7 +190,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
                         filter: 'drop-shadow(0 0 4px rgba(251, 191, 36, 0.8))'
                       }}
                     >
-                      <i className={iconClass}></i>
+                      <Icon />
                     </div>
                   ))}
                 </div>
@@ -168,7 +201,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
                   <h3 className="text-amber-100 text-xl font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
                     {artwork.title}
                     <span className="ml-2 inline-block animate-pulse">
-                      <i className="fas fa-palette"></i>
+                      <FaPalette />
                     </span>
                   </h3>
                 </div>
@@ -176,7 +209,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
               
               {/* Corner decoration with Indian motif */}
               <div className="absolute top-4 right-4 text-amber-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 om-pulse text-lg" style={{ filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.8))' }}>
-                <i className="fas fa-om"></i>
+                <FaOm />
               </div>
             </div>
           </div>
@@ -187,14 +220,14 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
         <SparkleEffect delay={2} />
         <button
           onClick={onSeeAll}
-          className="inline-block bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 group relative overflow-hidden divine-glow"
+          className="inline-block bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 group relative overflow-hidden divine-glow border-2 border-amber-300 golden-shimmer"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-500 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
           <span className="relative z-10">
             See All Artwork Collection
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
             <span className="ml-1 inline-block group-hover:animate-bounce">
-              <i className="fas fa-om"></i>
+              <FaOm />
             </span>
           </span>
         </button>
@@ -203,7 +236,7 @@ const FeaturedGallery = ({ onSeeAll }: FeaturedGalleryProps) => {
         <div className="absolute -top-2 -left-2 w-2 h-2 bg-amber-400 rounded-full animate-ping opacity-60"></div>
         <div className="absolute -bottom-2 -right-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse opacity-60"></div>
         <div className="absolute -top-1 -right-1 text-amber-300 ethereal-float text-sm">
-          <i className="fas fa-fire"></i>
+          <RiFireFill />
         </div>
       </div>
     </section>

@@ -330,3 +330,20 @@ html {
 .aureole-effect {
   animation: aureole 2s ease-out infinite;
 }
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 3.5s linear infinite;
+}
+
+@keyframes golden-shimmer {
+  0% { filter: brightness(1) drop-shadow(0 0 8px #FFD70088); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 24px #FFD700cc); }
+  100% { filter: brightness(1) drop-shadow(0 0 8px #FFD70088); }
+}
+.golden-shimmer {
+  animation: golden-shimmer 2.5s ease-in-out infinite;
+}
